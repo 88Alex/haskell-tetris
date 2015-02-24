@@ -13,7 +13,16 @@ instance Eq TetrisBlockType where
 		| x == BackwardsZ = y == BackwardsZ
 		| x == Square = y == Square
 		| otherwise = error "Undefined Tetris Block"
+
 data Rotation = Normal | Right90 | Left90 | UpsideDown
+instance Eq Rotation where
+	x == y
+		| x == Normal = y == Normal
+		| x == Right90 = y == Right90
+		| x == Left90 = y == Left90
+		| x == UpsideDown = y == UpsideDown
+		| otherwise = error "Undefined Rotation"
+
 data TetrisBlock = Block TetrisBlockType Int Int Rotation
 -- In the declaration below, the first integer is the score.
 -- The last TetrisBlockType is the next block to appear.
