@@ -4,7 +4,17 @@ import Graphics.Gloss
 import Graphics.Gloss.Interface.Pure.Game
 
 data TetrisBlockType = Straight | L | T | Z | BackwardsZ | Square
-data TetrisBlock = Block TetrisBlockType Int Int
+instance Eq TetrisBlockType where
+	x == y
+		| x == Straight = y == Straight
+		| x == L = y == L
+		| x == T = y == T
+		| x == Z = y == Z
+		| x == BackwardsZ = y == BackwardsZ
+		| x == Square = y == Square
+		| otherwise = error "Undefined Tetris Block"
+data Rotation = Normal | Right90 | Left90 | UpsideDown
+data TetrisBlock = Block TetrisBlockType Int Int Rotation
 -- In the declaration below, the first integer is the score.
 -- The last TetrisBlockType is the next block to appear.
 data World = MakeWorld Integer [TetrisBlock] TetrisBlockType
