@@ -24,10 +24,20 @@ instance Eq Rotation where
 		| x == UpsideDown = y == UpsideDown
 		| otherwise = error "Undefined Rotation"
 
-data TetrisBlock = Block TetrisBlockType Int Int Rotation
+data TetrisBlock = Block TetrisBlockType Rotation
 -- In the declaration below, the first integer is the score.
 -- The last TetrisBlockType is the next block to appear.
-data World = MakeWorld Integer [TetrisBlock] TetrisBlockType
+data World = MakeWorld Integer [(Int, Int, Maybe TetrisBlockType)] TetrisBlockType
+
+blockColor :: TetrisBlockType -> Color
+blockColor block = case block of
+	I -> cyan
+	L -> orange
+	L' -> blue
+	T -> purple
+	Z -> red
+	Z' -> green
+	C -> yellow
 
 displayMode = InWindow "Haskell Tetris" (0, 0) (800, 800)
 bgColor = black
