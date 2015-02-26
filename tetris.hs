@@ -34,7 +34,7 @@ blockColor block = case block of
 	I -> cyan
 	L -> orange
 	L' -> blue
-	T -> purple
+	T -> violet
 	Z -> red
 	Z' -> green
 	C -> yellow
