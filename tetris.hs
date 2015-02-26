@@ -3,15 +3,16 @@
 import Graphics.Gloss
 import Graphics.Gloss.Interface.Pure.Game
 
-data TetrisBlockType = Straight | L | T | Z | BackwardsZ | Square
+data TetrisBlockType = I | L' | T | L | Z | Z' | C
 instance Eq TetrisBlockType where
 	x == y
-		| x == Straight = y == Straight
-		| x == L = y == L
-		| x == T = y == T
-		| x == Z = y == Z
-		| x == BackwardsZ = y == BackwardsZ
-		| x == Square = y == Square
+		| x == I = y == I -- Four blocks up
+		| x == L' = y == L' -- Three blocks up and one to the bottom-right
+		| x == T = y == T -- Three blocks up and one to the middle-right
+		| x == L = y == L -- Three blocks up and one to the top-right
+		| x == Z = y == Z -- Two blocks up, one to the top-left, and one to the bottom-right
+		| x == Z' = y == Z' -- Two blocks up, one to the bottom-left, and one to the top-right
+		| x == C = y == C -- Four blocks in a square
 		| otherwise = error "Undefined Tetris Block"
 
 data Rotation = Normal | Right90 | Left90 | UpsideDown
